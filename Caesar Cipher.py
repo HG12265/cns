@@ -1,23 +1,16 @@
-def encrypt(text, shift):
-    result = ""
-
-    for ch in text:
-        if ch.isalpha(): 
-            base = 65 if ch.isupper() else 97
-            result += chr((ord(ch) - base + shift) % 26 + base)
-        else:
-            result += ch  
-
-    return result
-
-
-def decrypt(text, shift):
-    return encrypt(text, -shift)  
-text = input("Enter the plain text: ")
-shift = 5
-
-encrypted = encrypt(text, shift)
-print("Encrypted:", encrypted)
-
-decrypted = decrypt(encrypted, shift)
-print("Decrypted:", decrypted)
+text = input("Enter text: ")
+s = 5
+cipher = ""
+for ch in text:
+    if ch.isalpha():
+        cipher += chr((ord(ch) - 97 + s) % 26 + 97)
+    else:
+        cipher += ch
+print("Encrypted:", cipher)
+plain = ""
+for ch in cipher:
+    if ch.isalpha():
+        plain += chr((ord(ch) - 97 - s) % 26 + 97)
+    else:
+        plain += ch
+print("Decrypted:", plain)
